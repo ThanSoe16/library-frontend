@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
 
-module.exports = nextConfig
+  experimental: {
+    outputStandalone: true,
+    emotion: {
+      sourceMap: true,
+      autoLabel: "dev-only",
+      labelFormat: "my-classname--[local]",
+    },
+  },
+};
+
+module.exports = nextConfig;

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           <div className=" col-md-12 footer-link d-flex justify-content-center align-items-center">
-            <a href="#">About Us</a>
+            <a href="#">About</a>
             <a href="#">Contact Us</a>
             <a href="#">Terms and Conditions</a>
             <a href="#">Privacy Policy</a>

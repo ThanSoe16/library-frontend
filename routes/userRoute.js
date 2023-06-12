@@ -16,10 +16,6 @@ const userRoute = [
     name: 'Contact Us',
     path: `${layout}/contact_us`,
   },
-  {
-    name: 'About Us',
-    path: `${layout}/about_us`,
-  },
 ]
 
 export default userRoute

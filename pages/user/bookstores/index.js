@@ -1,48 +1,16 @@
 import { css } from '@emotion/react'
 import UserLayout from '@/components/layouts/userLayout'
 import BookItems from '@/components/base/bookItems'
+import BookStoreDetail from '@/components/bookStores/bookStoreDetail'
+import BookStoreList from '@/components/bookStores/bookStoreList'
+import { useRouter } from 'next/router'
 
 const Index = () => {
+  const router = useRouter()
+  console.log(router)
   return (
     <UserLayout>
-      <div css={styles.libraries}>
-        <h3
-          className="subTitle text-center"
-          css={{
-            color: 'var(--textColor-black)',
-          }}
-        >
-          Our Book Stores Lists
-        </h3>
-        <h4 className="subText text-center">
-          Today a reader, tomorrow a leader.
-        </h4>
-        <div className="justify-content-start" css={styles.listContainer}>
-          {/* <LibraryItems
-            title={'A-Library'}
-            description={
-              'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..'
-            }
-          /> */}
-
-          <BookItems
-            title={'English for everyone'}
-            description={
-              'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem  Lorem IpsumLorem Ipsum Lorem…..'
-            }
-            author={'Alex'}
-            price={'3,000'}
-          />
-          <BookItems
-            title={'English for everyone'}
-            description={
-              'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem  Lorem IpsumLorem Ipsum Lorem…..'
-            }
-            author={'Alex'}
-            price={'3,000'}
-          />
-        </div>
-      </div>
+      {router.query.mode == 'detail' ? <BookStoreDetail /> : <BookStoreList />}
     </UserLayout>
   )
 }

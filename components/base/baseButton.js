@@ -8,6 +8,10 @@ const BaseButton = ({
   rightArrow = false,
   block = false,
   onClick,
+  enableIcon = false,
+  icon,
+  height = 50,
+  radius = 15,
 }) => {
   return (
     <div
@@ -15,6 +19,8 @@ const BaseButton = ({
         primary: primary,
         background: background,
         block: block,
+        height: height,
+        radius: radius,
       })}
       style={{
         display: 'flex',
@@ -22,6 +28,8 @@ const BaseButton = ({
       }}
       onClick={() => onClick()}
     >
+      {enableIcon && icon()}
+      {enableIcon && <div style={{ marginRight: '5px' }} />}
       <div>{label}</div>
       {rightArrow && <FaArrowRight style={{ marginLeft: '10px' }} />}
     </div>
@@ -29,16 +37,17 @@ const BaseButton = ({
 }
 export default BaseButton
 const styles = {
-  libraryButton: ({ primary, background, block }) => css`
+  libraryButton: ({ primary, background, block, height, radius }) => css`
     background-color: ${primary
       ? 'var(--primaryColor)'
       : 'var(--secondaryColor)'};
     font-size: 14px;
     transition: 0.4s ease-in-out;
-    padding: 15px 30px;
+    height: ${height}px;
+    padding: 0px 30px;
     width: ${block ? '100%' : 'auto'};
     color: ${primary ? 'var(--textColor-white)' : 'var(--textColor-black)'};
-    border-radius: 15px;
+    border-radius: ${radius}px;
     text-decoration: none;
     justify-content: center;
     cursor: pointer;

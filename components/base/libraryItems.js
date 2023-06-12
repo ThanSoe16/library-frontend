@@ -5,7 +5,7 @@ import { FaAngleDoubleRight } from 'react-icons/fa'
 const LibraryItems = ({ image, title, description, onClick }) => {
   return (
     <div className="col-lg-3 col-md-6" css={styles.card}>
-      <div className="imageContainer">{image}</div>
+      <img src={image} alt="images" width="100%" height="200px" />
       <div className="body">
         <h1 className="label">{title}</h1>
         <p className="description">{description}</p>
@@ -22,13 +22,10 @@ const styles = {
   card: css`
     height: 400px;
     border: 1px solid var(--primaryColor);
-    width: 30%;
+    width: 31%;
     margin-bottom: 25px;
-    margin-right: 25px;
-    .imageContainer {
-      height: 50%;
-      width: 100%;
-    }
+    margin-left: 25px;
+
     .body {
       width: 100%;
       padding: 20px;

@@ -11,9 +11,76 @@ import BaseButton from '@/components/base/baseButton'
 import userRoute from 'routes/userRoute'
 import BookItems from '@/components/base/bookItems'
 import LibraryItems from '@/components/base/libraryItems'
+import BookDetailModal from '@/components/base/bookDetailModal'
 
 const DashboardPage = () => {
   const { push } = useRouter()
+  const router = useRouter()
+  const [detailModalOpen, setDetailModalOpen] = useState(false)
+  const [selectedBook, setSelectedBook] = useState([])
+
+  const libraryItems = [
+    {
+      id: 1,
+      title: 'A-Library',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+    {
+      id: 2,
+      title: 'B-Library',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+    {
+      id: 3,
+      title: 'C-Library',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+  ]
+
+  const bookStores = [
+    {
+      id: 1,
+      title: 'A-BookStore',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+    {
+      id: 2,
+      title: 'B-BookStore',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+    {
+      id: 3,
+      title: 'C-BookStore',
+      image: './libraryImg.png',
+      description:
+        'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..',
+    },
+  ]
+
+  const handleLibraryDetail = (id) => {
+    router.push({
+      pathname: `/user/libraries`,
+      query: { id: id, mode: 'detail' },
+    })
+  }
+
+  const handleBookStoreDetail = (id) => {
+    router.push({
+      pathname: `/user/bookstores`,
+      query: { id: id, mode: 'detail' },
+    })
+  }
+
   return (
     <div css={styles.main}>
       <section className="header">
@@ -128,24 +195,15 @@ const DashboardPage = () => {
             Today a reader, tomorrow a leader.
           </h4>
           <div className="justify-content-start" css={styles.listContainer}>
-            <LibraryItems
-              title={'A-Library'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..'
-              }
-            />
-            <LibraryItems
-              title={'A-Library'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..'
-              }
-            />
-            <LibraryItems
-              title={'A-Library'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem Lorem IpsumLorem Ipsum Lorem…..'
-              }
-            />
+            {libraryItems.map((item, index) => (
+              <LibraryItems
+                key={item.id}
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                onClick={() => handleLibraryDetail(item.id)}
+              />
+            ))}
           </div>
           <div
             className="row text-center align-items-center justify-content-center"
@@ -174,30 +232,15 @@ const DashboardPage = () => {
             Treasure Island.
           </h4>
           <div className="justify-content-start" css={styles.listContainer}>
-            <BookItems
-              title={'English for everyone'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem  Lorem IpsumLorem Ipsum Lorem…..'
-              }
-              author={'Alex'}
-              price={'3,000'}
-            />
-            <BookItems
-              title={'English for everyone'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem  Lorem IpsumLorem Ipsum Lorem…..'
-              }
-              author={'Alex'}
-              price={'3,000'}
-            />
-            <BookItems
-              title={'English for everyone'}
-              description={
-                'Lorem, Ipsum, Lorem Ipsum Lorem IpsumLorem  Lorem IpsumLorem Ipsum Lorem…..'
-              }
-              author={'Alex'}
-              price={'3,000'}
-            />
+            {bookStores.map((item, index) => (
+              <LibraryItems
+                key={item.id}
+                title={item.title}
+                description={item.description}
+                image={item.image}
+                onClick={() => handleBookStoreDetail(item.id)}
+              />
+            ))}
           </div>
           <div
             className="row text-center align-items-center justify-content-center"
@@ -253,6 +296,11 @@ const DashboardPage = () => {
           </div>
         </div>
       </section>
+      <BookDetailModal
+        isOpen={detailModalOpen}
+        selectedBook={selectedBook}
+        close={() => setDetailModalOpen(false)}
+      />
     </div>
   )
 }

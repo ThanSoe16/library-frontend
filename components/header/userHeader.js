@@ -5,7 +5,7 @@ import { CgSearch } from 'react-icons/cg'
 const UserHeader = ({ routes }) => {
   const { push } = useRouter()
 
-  const currentLocation = useRouter().asPath
+  const currentLocation = useRouter().pathname
   const handleClick = (path) => {
     push(path)
   }

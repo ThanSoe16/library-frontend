@@ -2,12 +2,21 @@ import React from 'react'
 import { css } from '@emotion/react'
 import { FaAngleDoubleRight } from 'react-icons/fa'
 
-const BookItems = ({ image, title, description, author, price, onClick }) => {
+const BookItems = ({
+  image,
+  title,
+  description,
+  author,
+  price,
+  handleView,
+}) => {
   return (
     <div css={styles.card}>
-      <div className="imageContainer">{image}</div>
+      <img src={image} alt="images" height="260" width={'100%'} />
       <div className="body">
-        <h1 className="label">{title}</h1>
+        <h1 className="label">
+          {title.length > 16 ? `${title.substring(0, 16)}...` : title}
+        </h1>
         <div
           style={{
             display: 'flex',
@@ -15,11 +24,12 @@ const BookItems = ({ image, title, description, author, price, onClick }) => {
             marginBottom: '10px',
           }}
         >
-          <span className="subLabel">{author}</span>
+          <span className="subLabel">
+            {author.length > 16 ? `${author.substring(0, 16)}...` : author}
+          </span>
           <span className="subLabel">{price} Ks</span>
         </div>
-        <p className="description">{description}</p>
-        <div className="btnView" onClick={() => onClick()}>
+        <div className="btnView" onClick={() => handleView()}>
           <span className="btnText">View Detail</span>
           <FaAngleDoubleRight />
         </div>
@@ -30,32 +40,27 @@ const BookItems = ({ image, title, description, author, price, onClick }) => {
 export default BookItems
 const styles = {
   card: css`
-    height: 450px;
-    border: 1px solid var(--primaryColor);
-    width: 30%;
+    height: 400px;
+    background-color: var(--secondaryColor);
+    padding: 15px;
+    width: 22%;
     margin-bottom: 25px;
-    margin-right: 25px;
+    margin-left: 25px;
     .imageContainer {
-      height: 50%;
+      height: 70%;
       width: 100%;
+      background-color: white;
     }
     .body {
       width: 100%;
-      padding: 20px;
-      background-color: var(--textColor-white);
-      height: 50%;
-      border-top: 1px solid var(--primaryColor);
+      height: 30%;
+      margin-top: 20px;
+      justify-content: space-between;
     }
     .label {
       height: 20%;
       font-size: 18px;
       color: var(--textColor-black);
-    }
-    .description {
-      font-size: 14px;
-      color: var(--textColor-black);
-      font-weight: lighter;
-      height: 35%;
     }
     .subLabel {
       font-size: 14px;
@@ -75,6 +80,7 @@ const styles = {
       font-size: 14px;
       color: var(--textColor-black);
       margin-right: 10px;
+      font-weight: 600;
     }
   `,
 }

@@ -1,4 +1,4 @@
-import { css, Global } from "@emotion/react";
+import { css, Global } from '@emotion/react'
 
 export const globalStyles = (
   <Global
@@ -6,7 +6,8 @@ export const globalStyles = (
       * {
         padding: 0;
         margin: 0;
-        font-family: "Open Sans", sans-serif;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
       }
       html {
         --primaryColor: #2e686a;
@@ -16,4 +17,4 @@ export const globalStyles = (
       }
     `}
   />
-);
+)

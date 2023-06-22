@@ -5,7 +5,7 @@ import LibraryList from '@/components/libraries/libraryList'
 
 const Index = () => {
   const router = useRouter()
-  console.log(router)
+  console.log('router', router)
   return (
     <UserLayout>
       {router.query.mode == 'detail' ? <LibraryDetail /> : <LibraryList />}
